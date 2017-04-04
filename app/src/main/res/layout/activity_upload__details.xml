@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ley"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="16dp">
+
+    <Spinner
+        android:id="@+id/noteType"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Document Type"
+        android:textColorHint="#05ab9a" />
+        <!--app:met_floatingLabel="normal" />-->
+
+    <Spinner
+        android:id="@+id/branchName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/categoryName"
+        android:layout_marginTop="15dp"
+        android:hint="Select Branch"
+        android:textColorHint="#05ab9a"
+        android:visibility="visible" />
+
+    <Spinner
+        android:id="@+id/categoryName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/noteType"
+        android:layout_marginTop="14dp"
+        android:hint="Select Category"
+        android:textColorHint="#05ab9a"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/docTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/docSubject"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textview_res"
+        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="Title"
+        android:inputType="textCapWords"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:textColor="@color/black"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/docSubject"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/branchName"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textview_res"
+        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:hint="Subject"
+        android:inputType="textCapWords"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:textColor="@color/black"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/docTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_res"
+        android:text="Submit"
+        android:textSize="18sp" />
+
+</RelativeLayout>

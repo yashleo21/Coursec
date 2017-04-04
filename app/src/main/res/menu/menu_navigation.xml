@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/home"/>
+
+        <item
+            android:id="@+id/upload"
+            android:title="Upload"
+            android:icon="@drawable/upload"/>
+
+
+        <item
+            android:id="@+id/downloads"
+            android:title="Pending Documents"
+            android:icon="@drawable/download"/>
+
+
+
+        <item android:id="@+id/logout"
+            android:title="Logout"
+            android:icon="@drawable/close"/>
+        </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group2">
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_about_us"
+                android:title="@string/nav_about_us" />
+            <item
+                android:id="@+id/nav_privacy_policy"
+                android:title="@string/privacy_policy" />
+        </menu>
+    </item>
+    </group>
+</menu>
