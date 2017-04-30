@@ -1,5 +1,5 @@
 # Coursec
-A Android based application utilizing the power of Google's Firebase.
+An Android based application utilizing the power of Google's Firebase.
 
 Powered by Material Design.
 
