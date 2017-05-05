@@ -27,9 +27,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.prafu.testcoursec.Activity.Pending;
 import com.example.prafu.testcoursec.Activity.UploadSelector;
 import com.example.prafu.testcoursec.other.CircleTransform;
+import com.example.prafu.testcoursec.other.Utils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
     String value;
     private Context context;
 
+    String rootAccess;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    MenuItem itemPending;
     private int[] tabIcons = {
             R.drawable.notes,
             R.drawable.questionpaper,
@@ -65,7 +73,28 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         setTitle("Home");
+        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
+        itemPending = navigationView.getMenu().findItem(R.id.downloads);
+        FirebaseDatabase mDatabase = Utils.getDatabase();
+        DatabaseReference mRef = mDatabase.getReference().child("Users");
+        DatabaseReference userDB = mRef.child(mAuth.getCurrentUser().getUid());              // PENDING-DOCS 5-MAY-2017 YASH. TEST PLS
+        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("nameqwer",dataSnapshot.child("Name").getValue().toString());
+                rootAccess = dataSnapshot.child("rootlevel").getValue().toString();
+                if(rootAccess.equals("10")){
+                    itemPending.setVisible(true);
+                }
+                else
+                    itemPending.setVisible(true);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG,databaseError.getDetails());
+            }
+        });
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
@@ -106,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, UploadSelector.class));
                         break;
                     case R.id.downloads:
-                        Toast.makeText(getApplicationContext(),"Trash",Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getApplicationContext(),"Trash",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, Pending.class));
                         drawerLayout.closeDrawers();
                         break;
