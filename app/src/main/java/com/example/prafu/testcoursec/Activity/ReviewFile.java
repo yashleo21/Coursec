@@ -95,7 +95,11 @@ public class ReviewFile extends AppCompatActivity {
             pBar_view_content.setVisibility(View.GONE);
     }
 
+    public int increment(int val){
 
+        return val+1;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,9 +148,35 @@ public class ReviewFile extends AppCompatActivity {
                         ref.child("subject").setValue(subject);
                         ref.child("link").setValue(pdfLink);
                         ref.child("user").setValue(user);
+
+                        final DatabaseReference uRef = firebaseDatabase.getReference().child("Users").child(user);
+                        uRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                try {                                                                                               // CODE FOR COUNTER 5-MAY-17 YASH
+                                    int val = (Integer) dataSnapshot.child("postcount").getValue();
+                                    val = increment(val);
+                                    uRef.child("postcount").setValue(val);
+                                }
+                                catch (Exception e){
+                                    int val = 1;
+                                    uRef.child("postcount").setValue(val);
+                                }
+
+                                finally {
+                                    uRef.child("Uploads").push().child("title").setValue(title);
+                                }
+                                }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
 //                        SendMail sm = new SendMail(ReviewFile.this,email,"Your document is approved","Your file has been approved.");
 //                        sm.execute();
                         setProgressVisibility(false);
+
                         new AlertDialog.Builder(ReviewFile.this)
                                 .setMessage("The document has been approved.")
                                 .setNeutralButton("OK", new DialogInterface.OnClickListener() {
