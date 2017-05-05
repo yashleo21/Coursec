@@ -32,7 +32,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -239,7 +238,7 @@ public class Upload_Details extends AppCompatActivity implements AdapterView.OnI
         Bundle bundle = getIntent().getExtras();
         final String path = bundle.getString("filepath");
         Log.d("Path",path);
-        Uri file = Uri.fromFile(new File(path));
+        final Uri file = Uri.fromFile(new File(path));
         Log.d("URIPATH",file.toString());
         Log.d("LASTSEGMENT",file.getLastPathSegment());
         StorageReference newFile = storageReference.child("images/"+file.getLastPathSegment());
@@ -266,10 +265,9 @@ public class Upload_Details extends AppCompatActivity implements AdapterView.OnI
                         dRef.child("user").setValue(mAuth.getCurrentUser().getUid());
                         dRef.child("category").setValue(CATEGORY);
                         dRef.child("branch").setValue(BRANCH);
-                        dRef.child("timestamp").setValue(ServerValue.TIMESTAMP);
                         dRef.child("link").setValue(downloadUrl.toString());
                         dRef.child("approved").setValue(0);
-//                        dRef.child("filetype").setValue(path.substring(path.lastIndexOf(".")+1,path.length()));
+                        dRef.child("filetype").setValue(path.substring(path.lastIndexOf(".")+1,path.length()));
                         Log.d("Upload","Success");
 
                     }

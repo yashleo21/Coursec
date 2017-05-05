@@ -13,17 +13,24 @@
             android:icon="@drawable/upload"/>
 
 
-        <item
-            android:id="@+id/downloads"
-            android:title="Pending Documents"
-            android:icon="@drawable/download"/>
-
-
-
         <item android:id="@+id/logout"
             android:title="Logout"
             android:icon="@drawable/close"/>
         </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group3">
+        <item
+            android:title="Administrator">
+            <menu>
+                <item
+                    android:id="@+id/downloads"
+                    android:icon="@drawable/download"
+                    android:title="Pending Documents"
+                    android:visible="false"/>
+            </menu>
+        </item>
+    </group>
 
     <group android:checkableBehavior="single"
         android:id="@+id/group2">
