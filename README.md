@@ -8,3 +8,5 @@ A central repository for the students,teachers and all of those who want to lear
 Coursec's repository of study material ranges from pictures to pdf,doc etc.
 
 Currently the app is in beta phase and will soon be available for public access.
+
+Developed by Praful Anand, Mehul Bhatt, Abhishek Yadav and Yash Pratap Singh
